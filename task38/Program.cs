@@ -3,18 +3,6 @@
 
 // [3.5, 7.1, 22.9, 2.3, 78.5] -> 76.2
 
-Console.WriteLine("Введите количество элементов массива: ");
-Console.Write("Count: ");
-int size = Convert.ToInt32(Console.ReadLine());
-
-Console.WriteLine("Введите нижний предел диапазона элементов массива: ");
-Console.Write("MIN: ");
-int minimum = Convert.ToInt32(Console.ReadLine());
-
-Console.WriteLine("Введите верхний предел диапазона элементов массива: ");
-Console.Write("MAX: ");
-int maximum = Convert.ToInt32(Console.ReadLine());
-
 double[] CreateArrayRndDouble(int s, int min, int max)
 {
     double[] array = new double[s];
@@ -50,8 +38,19 @@ double SubtractionOfMaxAndMin(double[] arr)
     return max - min;
 }
 
+Console.WriteLine("Введите количество элементов массива: ");
+int size = Convert.ToInt32(Console.ReadLine());
+
 if (size > 0)
 {
+    Console.WriteLine("Введите нижний предел диапазона значений для элементов массива: ");
+    Console.Write("MIN: ");
+    int minimum = Convert.ToInt32(Console.ReadLine());
+
+    Console.WriteLine("Введите верхний предел диапазона значений для элементов массива: ");
+    Console.Write("MAX: ");
+    int maximum = Convert.ToInt32(Console.ReadLine());
+
     if (maximum > minimum)
     {
         double[] array = CreateArrayRndDouble(size, minimum, maximum);
@@ -61,4 +60,4 @@ if (size > 0)
     }
     else Console.WriteLine("Неверно задан диапазон допустимых значений");
 }
-else Console.WriteLine("Число Count должно быть натуральным");
+else Console.WriteLine("Число должно быть натуральным");
