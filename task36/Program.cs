@@ -4,16 +4,13 @@
 // [3, 7, 23, 12] -> 19
 // [-4, -6, 89, 6] -> 0
 
-Console.WriteLine("Введите количество элементов массива: ");
-int size = Convert.ToInt32(Console.ReadLine());
-
-int[] CreateArrayRndInt(int s)
+int[] CreateArrayRndInt(int s, int min, int max)
 {
     int[] array = new int[s];
     Random rnd = new Random();
     for (int i = 0; i < array.Length; i++)
     {
-        array[i] = rnd.Next(-99, 100);
+        array[i] = rnd.Next(min, max + 1);
     }
     return array;
 }
@@ -39,17 +36,35 @@ int SumOfUneven(int[] arr)
     return sum;
 }
 
-if (size > 1)
+
+Console.WriteLine("Введите количество элементов массива: ");
+int size = Convert.ToInt32(Console.ReadLine());
+
+if (size > 0)
 {
-    int[] array = CreateArrayRndInt(size);
-    PrintArray(array);
-    int sumofuneven = SumOfUneven(array);
-    Console.WriteLine($"Сумма элементов, стоящих на нечетных позициях: {sumofuneven}");
-}
-else if (size == 1)
-{
-    int[] array = CreateArrayRndInt(size);
-    PrintArray(array);
-    Console.WriteLine("В массиве нет элементов на нечетных позициях");
+    Console.WriteLine("Введите нижний предел диапазона значений для элементов массива: ");
+    Console.Write("MIN: ");
+    int minimum = Convert.ToInt32(Console.ReadLine());
+
+    Console.WriteLine("Введите верхний предел диапазона значений для элементов массива: ");
+    Console.Write("MAX: ");
+    int maximum = Convert.ToInt32(Console.ReadLine());
+
+    if (maximum > minimum)
+    {
+        int[] array = CreateArrayRndInt(size, minimum, maximum);
+        if (size == 1)
+        {
+            PrintArray(array);
+            Console.WriteLine("В массиве нет элементов на нечетных позициях");
+        }
+        else
+        {
+            PrintArray(array);
+            int sumofuneven = SumOfUneven(array);
+            Console.WriteLine($"Сумма элементов, стоящих на нечетных позициях: {sumofuneven}");
+        }
+    }
+    else Console.WriteLine("Неверно задан диапазон допустимых значений");
 }
 else Console.WriteLine("Число должно быть натуральным");
